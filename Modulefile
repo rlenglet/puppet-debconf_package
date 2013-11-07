@@ -1,0 +1,8 @@
+name 'rlenglet-debconf_package'
+version '0.1.0'
+source 'https://github.com/rlenglet/puppet-debconf_package.git'
+project_page 'https://github.com/rlenglet/puppet-debconf_package'
+author 'Romain Lenglet'
+license 'Apache License, Version 2.0'
+summary 'Debian package (re)configuration type'
+description 'Type to install and reconfigure a Debian package using a debconf preseed file'
