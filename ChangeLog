@@ -1,6 +1,31 @@
+2014-07-20  Romain Lenglet  <romain.lenglet@berabera.info>
+
+	* manifests/init.pp, manifests/setup.pp, ChangeLog: Add Apache
+	License 2.0 boilerplate.
+	* Modulefile: Update summary and description.  Increase version
+	number to 0.1.1.
+	* metadata.json: Add this file with the same information as
+	Modulefile, for Puppet >=3.6.  Add operatingsystem_support
+	metadata.
+	* README.markdown: Refresh the documentation's structure.
+
 2013-11-06  Romain Lenglet  <romain.lenglet@berabera.info>
 
 	* README.markdown: Fix formatting on github.com.
 
 	* Initial version.
 
+
+Copyright 2013, 2014 Romain Lenglet
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
