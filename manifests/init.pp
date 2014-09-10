@@ -15,8 +15,8 @@
 #
 #  debconf_package { openssh-server:
 #    ensure => present,
-#    content => 'openssh-server	ssh/use_old_init_script	boolean	true
-#  openssh-server	ssh/disable_cr_auth	boolean	false
+#    content => 'openssh-server ssh/use_old_init_script boolean true
+#  openssh-server ssh/disable_cr_auth boolean false
 #  '
 #  }
 #
@@ -49,35 +49,35 @@ define debconf_package (
   include debconf_package::setup
 
   file { "${::puppet_vardir}/debconf/${name}.debconf":
-    source => $source,
+    source  => $source,
     content => $content,
-    owner => root,
-    group => root,
-    mode => "0600",
+    owner   => root,
+    group   => root,
+    mode    => '0600',
     require => File["${::puppet_vardir}/debconf"],
   }
 
   package { $name:
-    ensure => $ensure,
+    ensure       => $ensure,
     responsefile => "${::puppet_vardir}/debconf/${name}.debconf",
-    require => File["${::puppet_vardir}/debconf/${name}.debconf"],
+    require      => File["${::puppet_vardir}/debconf/${name}.debconf"],
   }
 
   exec { "debconf-set-selections ${name}":
-    command => "/usr/bin/debconf-set-selections ${puppet_vardir}/debconf/${name}.debconf",
-    require => [Package[$name], File["${puppet_vardir}/debconf/${name}.debconf"]],
-    subscribe => File["${puppet_vardir}/debconf/${name}.debconf"],
+    command     => "/usr/bin/debconf-set-selections ${::puppet_vardir}/debconf/${name}.debconf",
+    require     => [Package[$name], File["${::puppet_vardir}/debconf/${name}.debconf"]],
+    subscribe   => File["${::puppet_vardir}/debconf/${name}.debconf"],
     refreshonly => true,
-    user => root,
-    group => root,
+    user        => root,
+    group       => root,
   }
 
   exec { "dpkg-reconfigure ${name}":
-    command => "/usr/sbin/dpkg-reconfigure -fnoninteractive ${name}",
-    require => Package[$name],
-    subscribe => Exec["debconf-set-selections ${name}"],
+    command     => "/usr/sbin/dpkg-reconfigure -fnoninteractive ${name}",
+    require     => Package[$name],
+    subscribe   => Exec["debconf-set-selections ${name}"],
     refreshonly => true,
-    user => root,
-    group => root,
+    user        => root,
+    group       => root,
   }
 }
